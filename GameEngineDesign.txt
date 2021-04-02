@@ -1,0 +1,42 @@
+double vs float //if double more precision but more memory usage
+
+event based or work like unity with init update and others? //not sure how event based would work for 3d. Might be too complex in that way. I see it more like unity with each component has scripts
+
+using c++ at any point like for heavy math stuff or just use librarys. //Probably not nessisary especially since we don't know it that well and we could just use other librarys.
+
+version of java (prolly 8) //Prolly 8 cuz lots of people use that and java is backwards compatible i belive.
+
+must make good use of accese modifires //Its important to do this if others are using it.
+
+unitests/tests //important to have automated testing to make shit easy
+
+
+Option 1: //Thinking about what you meant by component based I'm not sure this is what you were thinking about
+
+Renderable as interface //Lets the engine know this object is in the world and can be rendered. Should probebly not be public as it should only be on objects that have a position in the world.
+
+Script as interface //Used for any object that has a script to run. Objects can use this even without having a place in the world. So should probebly be public.
+
+abstract GameObject implements Renderable //This would be a abstact class that keeps track of its position in the world. Renderable so it can be a physical object that you see.
+
+Actor extends GameObject implements Script //Actor means it actually does something while in the world aka has script.
+
+
+Option 2: //If I understand what you mean by component based then this might be the way. It would be made mostly of interfaces you would implement to be it adding a component.
+
+What I don't understand about this way is that some components definetly need to store data such as the objects position. Interfaces as i understand can't have data other than static variables.
+
+For this reason I don't understand how this would work if everything was purly interfaces. However if they wern't then to implement two different components that are classes, idk how that would work.
+
+
+Option 3: //This option would involve us making base classes of components and then the object would add instances of thoes components.
+
+abstract Component //This would be what the add component function would call. The class would have an init, update, and whatever else would be needed. Components would basically be scripts. There would be a way for the component to accese the class it is a part of so it can acceses other components in it.
+
+We would also implement come Components that would be common/required such as an objects position.
+
+
+Would we handle any phisics stuff? Like the ridgid body in unity. What about collisions?
+
+
+After thinking about it I really only see option 3 working.
