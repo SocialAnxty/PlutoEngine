@@ -1,10 +1,10 @@
 package util.AStar;
 
 public class AStarNode {
-    AStarNode previous;
-    int[] position;
-    int hCost;
-    int fCost;
+    private AStarNode previous;
+    private int[] position;
+    private int hCost;
+    private int fCost;
 
     public AStarNode(int[] position, int hCost, int gCost, AStarNode previous){
         this.position = position;
@@ -19,5 +19,21 @@ public class AStarNode {
 
     public int getDimension(int d){
         return position[d];
+    }
+
+    public int getHCost(){
+        return hCost;
+    }
+
+    public int getGCost(){
+        return fCost - hCost;
+    }
+
+    public int getFCost(){
+        return fCost;
+    }
+
+    public AStarNode getPrevious(){
+        return previous;
     }
 }
